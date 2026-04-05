@@ -2,11 +2,22 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
+func writeLogsOnfile(name string, balance float64) {
+	balancetext := fmt.Sprintf(" %s has %.2f balance ", name, balance)
+	err := os.WriteFile("balance.txt", []byte(balancetext), 0o644)
+	if err != nil {
+		fmt.Println("An Error occured ...........")
+	}
+}
+
 func main() {
+	var name string = "meow"
 	var accountBalance float64 = 10000.00
 	var choice int32
+	writeLogsOnfile(name, accountBalance)
 	for choice != 4 {
 		fmt.Println("************WELCOME TO GO BANK*************")
 		fmt.Println("What do you wana do ")
@@ -28,6 +39,7 @@ func main() {
 			fmt.Scan(&moneyToBeDeposited)
 			if moneyToBeDeposited > 0 {
 				accountBalance += moneyToBeDeposited
+				writeLogsOnfile(name, accountBalance)
 				fmt.Printf("New Balanace is : %.3f", accountBalance)
 			} else {
 				fmt.Println("Money to be Deposited Should be Greater Than Zero !")
@@ -41,6 +53,7 @@ func main() {
 				fmt.Println("You Dont Have Enough Amount !")
 			} else {
 				accountBalance -= withdrawAmount
+				writeLogsOnfile(name, accountBalance)
 				fmt.Printf("Succesfull and New AMount Balance is : %.2f", accountBalance)
 			}
 		default:
