@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"bankexample.com/displayoptions"
+	"github.com/Pallinder/go-randomdata"
 )
 
 func writeLogsOnfile(name string, balance float64) {
@@ -17,15 +20,10 @@ func main() {
 	var name string = "meow"
 	var accountBalance float64 = 10000.00
 	var choice int32
+	fmt.Println(randomdata.Address())
 	writeLogsOnfile(name, accountBalance)
 	for choice != 4 {
-		fmt.Println("************WELCOME TO GO BANK*************")
-		fmt.Println("What do you wana do ")
-		fmt.Println("1.Check Balance")
-		fmt.Println("2.Deposit Money")
-		fmt.Println("3.Withdraw Money")
-		fmt.Println("4.Exit")
-
+		displayoptions.DisplayOptions()
 		fmt.Println("Please Select Your choice :")
 		fmt.Scan(&choice)
 		fmt.Printf("You Have Selectd %d \n", choice)
